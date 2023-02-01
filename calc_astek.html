@@ -145,43 +145,68 @@
           P = <span id="banner_p" class="null-per-empty-data">0</span> м<br/>
         </span>
       </div>
-      <div class="w-50 mx-auto mt-2">
-        <small class="fs-6 m-0"><span id="material_running" class="null-per-empty-data">0</span> погонных метров</small><br>
-        <small class="fs-6 m-0"><span id="count_luverse" class="null-per-empty-data">0</span> люверсов</small><br>
-        <small class="fs-6 m-0"><span id="pocket_lenght" class="null-per-empty-data">0</span> длинна кармана, м</small><br>
-        <small class="fs-6 m-0"><span id="gluing_parts" class="null-per-empty-data">0</span> частей, шт</small>
+
+      <div class="card mt-5">
+        <div class="card-header">Данные</div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <tr>
+              <th>Погонных, м</th>
+              <td><span id="material_running" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Люверсов, шт</th>
+              <td><span id="count_luverse" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Карман утяжеления, м</th>
+              <td><span id="pocket_lenght" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Частей баннера, шт</th>
+              <td><span id="gluing_parts" class="null-per-empty-data">0</span></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">Рассчет стоимости</div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <tr>
+              <th>Стоимость готового изделия, руб</th>
+              <td><span id="total_banner" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Резка изделия, руб</th>
+              <td><span id="total_product_cutting" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Установка люверсов, руб</th>
+              <td><span id="total_install_luverse" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Карман под утяжелитель, руб</th>
+              <td><span id="total_pocket_weighting" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Склейка частей баннера, руб</th>
+              <td><span id="total_gluing_parts" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Проклейка по периметру и вварка фалла, руб</th>
+              <td><span id="total_phallus_welding" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr class="table-info">
+              <th>Итого</th>
+              <th><span id="total_all" class="null-per-empty-data">0</span></th>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-
-  <p class="text-center">
-    <b>Стоимость готового изделия:</b> <span id="total_banner" class="null-per-empty-data">0</span> руб
-  </p>
-
-  <p class="text-center">
-    <b>Резка изделия:</b> <span id="total_product_cutting" class="null-per-empty-data">0</span> руб
-  </p>
-
-  <p class="text-center">
-    <b>Установка люверсов:</b> <span id="total_install_luverse" class="null-per-empty-data">0</span> руб
-  </p>
-
-  <p class="text-center">
-    <b>Карман под утяжелитель:</b> <span id="total_pocket_weighting" class="null-per-empty-data">0</span> руб
-  </p>
-
-  <p class="text-center">
-    <b>Склейка частей баннера:</b> <span id="total_gluing_parts" class="null-per-empty-data">0</span> руб
-  </p>
-
-  <p class="text-center">
-    <b>Проклейка по периметру и вварка фалла:</b> <span id="total_phallus_welding" class="null-per-empty-data">0</span> руб
-  </p>
-
-
-  <p class="text-center text-danger lead">
-    <b>Итого:</b> <span id="total_all" class="null-per-empty-data">0</span> руб
-  </p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -290,12 +315,6 @@
 
     // стоимость готового изделия
     $('#total_banner').text(((materialDensity + printType) * s / 1e6).toFixed(2))
-
-    /*if (bWidth !== settingMaterialWidth * 10 || bHeight !== settingMaterialWidth * 10) {
-      $('#total_product_cutting').text((p * parseInt($('#setting_cutting_price').val())).toFixed(2))
-    } else {
-      $('#total_product_cutting').text(0)
-    }*/
 
     // итого стоимость
     $('#total_all').text((parseFloat($('#total_banner').text()) + parseFloat($('#total_product_cutting').text()) + parseFloat($('#total_install_luverse').text()) + parseFloat($('#total_pocket_weighting').text()) + parseFloat($('#total_gluing_parts').text()) + parseFloat($('#total_phallus_welding').text()) ).toFixed(2))
