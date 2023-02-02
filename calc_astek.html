@@ -64,17 +64,25 @@
           <div class="alert alert-info mt-3">При габаритах более чем 6 х 3 м требуется проклейка баннера по периметру  и вварка фалла</div>
           <label for="phallus_welding" class="form-label">Проклейка баннера по периметру и вварка фалла</label>
           <select id="phallus_welding" class="form-select" onchange="recalc()">
-            <option value="false">Нет</option>
             <option value="true">Да</option>
+            <option value="false">Нет</option>
           </select>
         </div>
 
-        <div class="col-12 mb-3 d-none" id="cutting_notice">
-          <div class="alert alert-info mt-3 ">При ширине готового изделия менее 3м (и\или ширины материала) - доступна резка изделия в размер</div>
+        <div class="col-12 mb-3 " id="maket_orientation_notice">
+          <div class="alert alert-info mt-3">При высоте готового изделия меньше, чем ширина печатной области - доступно два вида расположения при печати - вдоль полотна и поперек</div>
+          <label for="maket_orientation" class="form-label">Расположение на рулоне</label>
+          <select id="maket_orientation" class="form-select" onchange="recalc()">
+            <option value="across">Поперек (меньше перерасход, цельный баннер)</option>
+            <option value="along">Повдоль (больше перерасход, клееный баннер)</option>
+          </select>
+        </div>
+
+        <div class="col-12 mb-3" id="cutting_notice">
           <label for="cutting" class="form-label">Резка изделия в размер</label>
           <select id="cutting" class="form-select" onchange="recalc()">
-            <option value="false">Нет</option>
             <option value="true">Да</option>
+            <option value="false">Нет</option>
           </select>
         </div>
 
@@ -87,49 +95,63 @@
           <div class="mb-3 row align-items-center">
             <label for="setting_material_width" class="col-sm-6 col-form-label">Ширина материала, см</label>
             <div class="col-sm-6">
-              <input type="number" step="1" class="form-control" id="setting_material_width" value="320"
+              <input type="number" step="1" class="form-control  settings" id="setting_material_width" value="320"
+                     onkeyup="recalc()">
+            </div>
+          </div>
+          <div class="mb-3 row align-items-center">
+            <label for="setting_non_printable_width" class="col-sm-6 col-form-label">Непечатаемые поля по краям, см</label>
+            <div class="col-sm-6">
+              <input type="number" step="1" class="form-control  settings" id="setting_non_printable_width" value="10"
+                     onkeyup="recalc()">
+            </div>
+          </div>
+          <div class="mb-3 row align-items-center">
+            <label for="setting_overspending_price" class="col-sm-6 col-form-label">Цена перерасхода, руб/м<sup>2</sup></label>
+            <div class="col-sm-6">
+              <input type="number" step="1" class="form-control  settings" id="setting_overspending_price" value="10"
                      onkeyup="recalc()">
             </div>
           </div>
           <div class="mb-3 row align-items-center">
             <label for="setting_cutting_price" class="col-sm-6 col-form-label">Цена реза в размер, руб./м</label>
             <div class="col-sm-6">
-              <input type="number" step="0.01" class="form-control" id="setting_cutting_price" value="50"
+              <input type="number" step="0.01" class="form-control  settings" id="setting_cutting_price" value="50"
                      onkeyup="recalc()">
             </div>
           </div>
           <div class="mb-3 row align-items-center">
             <label for="setting_install_luverse_price" class="col-sm-6 col-form-label">Цена установки люверса, руб/шт.</label>
             <div class="col-sm-6">
-              <input type="number" step="0.01" class="form-control" id="setting_install_luverse_price" value="25"
+              <input type="number" step="0.01" class="form-control  settings" id="setting_install_luverse_price" value="25"
                      onkeyup="recalc()">
             </div>
           </div>
           <div class="mb-3 row align-items-center">
             <label for="setting_pocket_weighting_price" class="col-sm-6 col-form-label">Цена карман под утяжелитель, руб/м.</label>
             <div class="col-sm-6">
-              <input type="number" step="0.01" class="form-control" id="setting_pocket_weighting_price" value="180"
+              <input type="number" step="0.01" class="form-control  settings" id="setting_pocket_weighting_price" value="180"
                      onkeyup="recalc()">
             </div>
           </div>
           <div class="mb-3 row align-items-center">
             <label for="setting_glue_perimeter_price" class="col-sm-6 col-form-label">Проклейка по периметру, руб/м.</label>
             <div class="col-sm-6">
-              <input type="number" step="0.01" class="form-control" id="setting_glue_perimeter_price" value="180"
+              <input type="number" step="0.01" class="form-control  settings" id="setting_glue_perimeter_price" value="180"
                      onkeyup="recalc()">
             </div>
           </div>
           <div class="mb-3 row align-items-center">
             <label for="setting_phallus_welding_price" class="col-sm-6 col-form-label">Вварка фалла, руб/м.</label>
             <div class="col-sm-6">
-              <input type="number" step="0.01" class="form-control" id="setting_phallus_welding_price" value="180"
+              <input type="number" step="0.01" class="form-control  settings" id="setting_phallus_welding_price" value="180"
                      onkeyup="recalc()">
             </div>
           </div>
           <div class="mb-3 row align-items-center">
             <label for="setting_gluing_parts_price" class="col-sm-6 col-form-label">Склейка частей баннера, руб/м.</label>
             <div class="col-sm-6">
-              <input type="number" step="0.01" class="form-control" id="setting_gluing_parts_price" value="200"
+              <input type="number" step="0.01" class="form-control  settings" id="setting_gluing_parts_price" value="200"
                      onkeyup="recalc()">
             </div>
           </div>
@@ -151,10 +173,6 @@
         <div class="card-body">
           <table class="table table-sm">
             <tr>
-              <th>Погонных, м</th>
-              <td><span id="material_running" class="null-per-empty-data">0</span></td>
-            </tr>
-            <tr>
               <th>Люверсов, шт</th>
               <td><span id="count_luverse" class="null-per-empty-data">0</span></td>
             </tr>
@@ -165,6 +183,10 @@
             <tr>
               <th>Частей баннера, шт</th>
               <td><span id="gluing_parts" class="null-per-empty-data">0</span></td>
+            </tr>
+            <tr>
+              <th>Перерасход, м<sup>2</sup></th>
+              <td><span id="overspending" class="null-per-empty-data">0</span></td>
             </tr>
           </table>
         </div>
@@ -198,6 +220,10 @@
               <th>Проклейка по периметру и вварка фалла, руб</th>
               <td><span id="total_phallus_welding" class="null-per-empty-data">0</span></td>
             </tr>
+            <tr>
+              <th>Перерасход, руб</th>
+              <td><span id="total_overspending" class="null-per-empty-data">0</span></td>
+            </tr>
             <tr class="table-info">
               <th>Итого</th>
               <th><span id="total_all" class="null-per-empty-data">0</span></th>
@@ -215,110 +241,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
-<script>
-  function recalc() {
-    const bWidth = parseInt($('#banner_width').val())
-    const bHeight = parseInt($('#banner_height').val())
-    const settingMaterialWidth = parseInt($('#setting_material_width').val())
-
-    if (!bWidth || !bHeight) {
-      $('.null-per-empty-data').text(0)
-      return
-    }
-
-    // соотношение сторон
-    const $banner = $('#banner_visual')
-    $banner.height($banner.width() / (bWidth / bHeight))
-
-    // площадь в мм
-    const s = Math.ceil(bWidth * bHeight)
-    const p = (bWidth + bHeight) * 2 / 1000
-
-    $('#banner_s').text((s / 1e6).toFixed(2))
-    $('#banner_p').text(p.toFixed(2))
-
-    // погонные метры
-    $('#material_running').text(((s / 1e6) / (settingMaterialWidth / 100)).toFixed(2))
-
-    materialDensity = parseInt($('#material_density').val())
-    printType = parseInt($('#print_type').val())
-
-    // Люверсы
-    if ($('#install_luverse').val() !== '0') {
-      if (bWidth && bHeight) {
-        let firstStep = parseInt(p * 100 / parseInt($('#install_luverse').val()))
-        let lastStep = Math.round(firstStep / 2) * 2
-        $('#count_luverse').text(lastStep)
-        $('#total_install_luverse').text(parseFloat($('#setting_install_luverse_price').val()).toFixed(2) * lastStep)
-      }
-    } else {
-      $('#count_luverse').text(0)
-      $('#total_install_luverse').text(0)
-    }
-
-    // Карман под утяжелитель
-    if ($('#pocket_weighting').val() === 'true') {
-      if (bWidth && $('#setting_pocket_weighting_price').val()) {
-        $('#pocket_lenght').text((bWidth / 1000).toFixed(2))
-        $('#total_pocket_weighting').text((bWidth / 1000).toFixed(2) * parseFloat($('#setting_pocket_weighting_price').val()).toFixed(2))
-      }
-    } else {
-      $('#pocket_lenght').text(0)
-      $('#total_pocket_weighting').text(0)
-    }
-
-    // Склейка частей баннера
-    if (bHeight && bHeight > 3000) {
-      if (bWidth) {
-        let numParts = Math.ceil(bWidth / (parseInt($('#setting_material_width').val()) * 10))
-        $('#gluing_parts').text(numParts)
-        $('#total_gluing_parts').text((numParts - 1) * (bHeight / 1000) * parseFloat($('#setting_gluing_parts_price').val()).toFixed(2) )
-      }
-    } else {
-      $('#gluing_parts').text(0)
-      $('#total_gluing_parts').text(0)
-    }
-
-    // Вварка фалла и проклейка по периметру
-    if (bHeight && bWidth && ((bWidth >= 3000 && bHeight >= 6000) || (bWidth >= 6000 && bHeight >= 3000))) {
-      let pricePerGluingPerimeter = (parseFloat($('#setting_glue_perimeter_price').val()) * p).toFixed(2)
-      let pricePerPhallus = (parseFloat($('#setting_phallus_welding_price').val()) * (p + 8) ).toFixed(2)
-
-      $('#phallus_welding_notice').removeClass('d-none')
-      if ($('#phallus_welding').val() === 'true') {
-        $('#total_phallus_welding').text(Number(pricePerGluingPerimeter) + Number(pricePerPhallus))
-      } else {
-        $('#total_phallus_welding').text(0)
-      }
-    } else {
-      $('#phallus_welding_notice').addClass('d-none')
-      $('#total_phallus_welding').text(0)
-    }
-
-    // Резка
-    if (bWidth && (bWidth <= 3000 || (bWidth <= settingMaterialWidth * 10))) {
-      $('#cutting_notice').removeClass('d-none')
-
-      if ($('#cutting').val() === 'true') {
-        $('#total_product_cutting').text((p * parseInt($('#setting_cutting_price').val())).toFixed(2))
-      } else {
-        $('#total_product_cutting').text(0)
-      }
-    } else {
-      $('#cutting_notice').addClass('d-none')
-      $('#total_product_cutting').text(0)
-    }
-
-    $('.alert-info').on('click', function () {
-      $(this).addClass('d-none')
-    })
-
-    // стоимость готового изделия
-    $('#total_banner').text(((materialDensity + printType) * s / 1e6).toFixed(2))
-
-    // итого стоимость
-    $('#total_all').text((parseFloat($('#total_banner').text()) + parseFloat($('#total_product_cutting').text()) + parseFloat($('#total_install_luverse').text()) + parseFloat($('#total_pocket_weighting').text()) + parseFloat($('#total_gluing_parts').text()) + parseFloat($('#total_phallus_welding').text()) ).toFixed(2))
-  }
-</script>
+<script src="./app.js"></script>
 </body>
 </html>
