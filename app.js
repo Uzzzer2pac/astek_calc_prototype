@@ -93,8 +93,14 @@ function recalc() {
 
     if (bHeight >= (printableWidth * 10) ) {
         let numParts = Math.ceil(bWidth / (printableWidth * 10))
+        let overspendingArea = ((numParts * (printableWidth * 10) - bWidth) * bHeight / 1e6 ).toFixed(2)
+
         $('#gluing_parts').text(numParts)
         $('#total_gluing_parts').text(((numParts - 1) * (bHeight / 1000).toFixed(2) * parseFloat($('#setting_gluing_parts_price').val()).toFixed(2)).toFixed(2) )
+
+        $('#overspending').text(overspendingArea)
+        $('#total_overspending').text((overspendingPrice * overspendingArea).toFixed(2))
+
         $('#maket_orientation_notice').addClass('d-none')
     } else {
         if (bWidth <= (printableWidth * 10) ) {
