@@ -91,7 +91,7 @@ function recalc() {
 
     // Учет перерасхода и склейки в зависимости от раскроя
 
-    if (bHeight >= (printableWidth * 10) ) {
+    if (bHeight > (printableWidth * 10) ) {
         let numParts = Math.ceil(bWidth / (printableWidth * 10))
         let overspendingArea = ((numParts * (printableWidth * 10) - bWidth) * bHeight / 1e6 ).toFixed(2)
 
